@@ -1,0 +1,108 @@
+@import "../modules/variables";
+@import "../modules/classes";
+@import "../modules/mixins";
+@import "./breakpoints";
+
+// third section
+.input-section {
+    @include responsive(tablet-lg) { padding: 0 $px40; }
+    @include responsive(tablet) { padding: 0 $px15; }
+    .input-cont {
+        max-width: 680px;
+        margin: 0 auto;
+        padding: $px40 0 $px100 0;
+        @include responsive(tablet-lg) { padding-bottom: $px80; }
+        @include responsive(tablet) { max-width: 100%; }
+        @include responsive(phone-land-sm) { padding-bottom: $px60; }
+        @include responsive(phone-port-md) { padding: $px35 0 $px50 0; }
+        .form {
+            .input-flex {
+                @include display (flex);
+                justify-content: space-between;
+                margin-bottom: $px20;
+                @include responsive(phone-land-sm) { flex-direction: column; }
+                @include responsive(phone-port-md) { margin-bottom: $px17; }
+                @include responsive(phone-port-sm) { margin-bottom: $px15; }
+            }
+            .center-box {
+                @include display (flex);
+                justify-content: center;
+                .submit-btn {
+                    width: 320px;
+                    height: $px40;
+                    background-color: $black;
+                    border: 0;
+                    border-radius: $px2;
+                    cursor: pointer;
+                    @include text-property ($px14, $inter, $white, $upper, none);
+                    transition: 0.3s ease;
+                    &:hover {
+                        background-color: $dark-gray;
+                    }
+                    @include responsive(phone-land-sm) { width: 100%; }
+                    @include responsive(phone-port-md) { height: $px38; }
+                    @include responsive(phone-port-sm) {
+                        height: $px35;
+                        font-size: $px13;
+                    }
+                }
+            }
+        }
+    }
+    .input-field {
+        width: 330px;
+        height: $px46;
+        border: 1px solid $gray-3;
+        background-color: $gray-3;
+        border-radius: $px2;
+        outline: none;
+        padding-left: $px20;
+        @include text-property ($px14, $inter, $black-1, none, none);
+        font-weight: $medium;
+        cursor: text;
+        transition: 0.3s ease;
+        &:hover {
+            border-color: $gray-4;
+        }
+        &:focus {
+            border-color: $gray-4;
+        }
+        &:first-child {
+            @include responsive(tablet) { margin-right: $px20; }
+            @include responsive(phone-land-sm) {
+                margin-right: 0;
+                margin-bottom: $px20;
+            }
+            @include responsive(phone-port-md) { margin-bottom: $px17; }
+            @include responsive(phone-port-sm) { margin-bottom: $px15; }
+        }
+        @include responsive(tablet) { width: 100%; }
+        @include responsive(phone-port-md) { height: $px40; }
+        @include responsive(phone-port-sm) {
+            height: $px38;
+            font-size: $px13;
+            padding-left: $px15;
+        }
+    }
+    .textarea-field {
+        height: 200px;
+        resize: none;
+        margin: $px20 0 $px30 0;
+        padding-top: $px16;
+        @include responsive(phone-port-md) {
+            height: 180px;
+            margin: $px17 0 $px25 0;
+        }
+        @include responsive(phone-port-sm) {
+            height: 160px;
+            margin: $px15 0 $px20 0;
+            padding-top: $px15; 
+        }
+    }
+    .capitalize {
+        text-transform: $capit;
+    }
+    .max-width {
+        width: 100%;
+    }
+}

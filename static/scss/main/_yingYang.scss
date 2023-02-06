@@ -1,0 +1,198 @@
+@import "../modules/variables";
+@import "../modules/classes";
+@import "../modules/mixins";
+@import "./breakpoints";
+
+// header container responsive
+.fixed-header {
+    .header-cont {
+        @include responsive(tablet-lg) {
+            max-width: 100%;
+            padding: 0 $px40;
+        }
+        @include responsive(tablet) { padding: 0 $px15; }
+    }
+}
+
+// photo info styles
+.text-content {
+    .info-box {
+        @include display (flex);
+        width: 375px;
+        margin: $px25 auto $px20 auto;
+        @include responsive(phone-land-sm) {
+            display: grid;
+            grid-column-gap: 20px;
+            grid-row-gap: 15px;
+            justify-items: start;
+            grid-template-rows: auto;
+            grid-template-columns: 1fr 1fr;
+            width: 246px;
+        }
+        @include responsive(phone-port-sm) {
+            margin-top: $px20;
+            width: 234px;
+        }
+        .photo-info {
+            @include display (flex);
+            align-items: center;
+            margin-right: $px20;
+            &:last-child {
+                margin-right: 0;
+            }
+            @include responsive(phone-land-sm) { margin-right: 0; }
+            .small-par {
+                @include text-property ($px14, $inter, $dark-gray, none, $px20);
+                margin-left: $px8;
+                @include responsive(phone-port-sm) { font-size: $px13; }
+            }
+        }
+    }
+    // other page 'info box' responsive
+    .tesla-info {
+        width: 328px;
+        @include responsive(phone-land-sm) { width: 200px; }
+        @include responsive(phone-port-sm) { width: 180px; }
+    }
+    .unconcept-info {
+        width: 353px;
+        @include responsive(phone-land-sm) { width: 205px; }
+        @include responsive(phone-port-sm) { width: 190px; }
+    }
+    .kirkjufell-info {
+        width: 347px;
+        @include responsive(phone-land-sm) { width: 222px; }
+        @include responsive(phone-port-sm) { width: 190px; }
+    }
+}
+
+// second section
+.section-cont {
+    .content-block {
+        .cart-box {
+            max-width: 380px;
+            height: 100%;
+            position: sticky;
+            top: $px68;
+            padding: $px20;
+            border-width: $px1;
+            border-style: solid;
+            border-color: $gray-3;
+            @include responsive(desktop) { margin-right: $px15; }
+            @include responsive(tablet-lg) {
+                max-width: 320px;
+                padding: $px12;
+            }
+            @include responsive(tablet) {
+                position: static;
+                max-width: 100%;
+                margin-right: 0;
+                margin-bottom: $px15;
+                padding-bottom: $px20;
+            }
+            @include responsive(phone-port-sm) { padding-bottom: $px17; }
+            h3 {
+                @include text-property ($px24, $inter, $black, $capit, $px34);
+                font-weight: $semi-bold;
+                @include responsive(tablet-lg) { font-size: $px25; }
+                @include responsive(tablet) { font-size: $px24; }
+                @include responsive(phone-land-sm) { font-size: $px20; }
+                @include responsive(phone-port-md) { line-height: $px28; }
+                @include responsive(phone-port-sm) {
+                    font-size: $px18;
+                    line-height: $px23;
+                }
+            }
+            p {
+                @include text-property ($px16, $inter, $black, none, $px24);
+                margin: $px20 0 $px30 0;
+                @include responsive(tablet) { margin: $px10 0 $px20 0; }
+                @include responsive(phone-land-sm) { margin: $px5 0 $px15 0; }
+                @include responsive(phone-port-md) { font-size: $px15; }
+                @include responsive(phone-port-sm) { font-size: 14.5px; }
+            }
+            .form {
+                @include display (flex);
+                flex-direction: column;
+                .label {
+                    @include text-property ($px16, $inter, $black, $capit, none);
+                    font-weight: $semi-bold;
+                    margin-bottom: $px10;
+                    @include responsive(phone-port-md) { font-size: $px15; }
+                    @include responsive(phone-port-sm) { margin-bottom: $px8; }
+                }
+                .select-field {
+                    height: $px38;
+                    width: 100%;
+                    background-color: $gray-3;
+                    border-color: $gray-3;
+                    border-radius: $px2;
+                    border-right-width: $px12;
+                    outline: none;
+                    cursor: pointer;
+                    @include text-property ($px14, $inter, $dark-gray, $capit, none);
+                    padding-left: $px12;
+                    margin-bottom: $px30;
+                    @include responsive(phone-land-sm) { margin-bottom: $px20; }
+                    @include responsive(phone-port-sm) {
+                        height: $px36;
+                        padding-left: $px8;
+                    }
+                }
+                .quantity-input {
+                    height: $px38;
+                    width: 65px;
+                    background-color: $gray-3;
+                    border: $px1 solid $gray-3;
+                    border-radius: $px2;
+                    outline: none;
+                    cursor: pointer;
+                    @include text-property ($px16, $inter, $dark-gray, none, none);
+                    padding: 0 $px6 0 $px10;
+                    margin-bottom: $px30;
+                    @include responsive(phone-land-sm) { margin-bottom: $px25; }
+                    @include responsive(phone-port-sm) {
+                        height: $px36;
+                        font-size: $px15; 
+                        margin-bottom: $px22;
+                    }
+                }
+                .add-cart {
+                    height: $px40;
+                    width: 100%;
+                    background-color: $black;
+                    border: $px1 solid $black;
+                    border-radius: $px2;
+                    outline: none;
+                    cursor: pointer;
+                    @include text-property ($px14, $inter, $white, $upper, $px20);
+                    transition: 0.4s ease;
+                    &:hover {
+                        opacity: 0.8;
+                    }
+                    @include responsive(phone-port-md) { height: $px38; }
+                    @include responsive(phone-port-sm) {
+                        height: $px36;
+                        font-size: $px13; 
+                    }
+                }
+            }
+        }
+        .images-box {
+            max-width: 730px;
+            width: 100%;
+            a {
+                img {
+                    width: 100%;
+                    object-fit: cover;
+                    border-radius: $px2;
+                    margin-bottom: $px15;
+                }
+            }
+        }
+    }
+}
+
+body {
+    font-family: $inter;
+}

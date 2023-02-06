@@ -1,0 +1,109 @@
+@import "../modules/variables";
+@import "../modules/classes";
+@import "../modules/mixins";
+@import "./breakpoints";
+
+// denial 'work' nav link hover effect
+.fixed-header {
+    .header-cont {
+        .flex-block {
+            .navigation {
+                .nav-ul {
+                    .hover-denial::after {
+                        transform: none;
+                        transition: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//  first section
+.first-section {
+    @include responsive(tablet) {
+        padding-left: $px15;
+        padding-right: $px15;
+    } 
+    .text-content {
+        max-width: 465px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: $px50;
+        @include responsive(tablet-lg) { padding-top: $px35; } 
+        @include responsive(tablet) { padding-top: $px30; }
+        @include responsive(phone-land-sm) { padding-top: $px10; }
+        .content-title {
+            @include text-property ($px42, $playFair, $black, $upper, none);
+            font-weight: $bold;
+            text-align: center;
+            margin-bottom: $px15;
+            @include responsive(tablet) { font-size: $px32; }
+            @include responsive(phone-port-md) { font-size: $px28; }
+            @include responsive(phone-port-sm) {
+                font-size: $px26;
+                margin-bottom: $px10;
+            }
+        }
+        .content-text {
+            @include text-property ($px16, $inter, $black, none, $px24);
+            text-align: center;
+            @include responsive(phone-port-md) {
+                font-size: $px15;
+                line-height: $px23;
+            }
+        }
+    }
+}
+
+// second section
+.section-cont {
+    .back-link {
+        @include display (flex);
+        width: $px70;
+        align-items: center;
+        padding-top: $px30;
+        @include responsive(desktop) { padding-left: $px15; }
+        @include responsive(tablet-lg) { padding-left: $px40; }
+        @include responsive(tablet) { padding-left: $px15; }
+        @include responsive(phone-port-md) { padding-top: $px25; }
+        .fa-angle-left {
+            font-size: $px18;
+            color: $black;
+            margin-right: $px10;
+            @include responsive(phone-port-md) { font-size: $px17; }
+            @include responsive(phone-port-sm) { font-size: $px15; }
+        }
+        .page-name {
+            @include text-property ($px14, $inter, $dark-gray, $upper, none);
+            font-weight: $medium;
+            padding-bottom: 1.5px;
+            position: relative;
+            @include responsive(phone-port-md) { font-size: $px13; }
+            @include responsive(phone-port-sm) { font-size: 12.5px; }
+            &::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: 1px;
+                background-color: $black;
+                transform: scale(0, 1);
+                transition: 0.3s linear;
+                @include responsive(tablet-lg) { height: 1.1px; }
+                @include responsive(phone-port-md) { height: 1.5px; }
+                @include responsive(phone-port-sm) { height: 1.2px; }
+            }
+            &:hover::after {
+                transform: scale(1, 1);
+            }
+        }
+    }
+    .change-size {
+        padding-top: 0;
+        margin-top: $px20;
+        @include responsive(phone-port-md) { margin-top: $px15; }
+        @include responsive(phone-port-sm) { margin-top: $px10; }
+    }
+}

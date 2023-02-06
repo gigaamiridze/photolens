@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/gif" href="{{ url_for('static', filename='images/lens.png') }}" sizes="16x16">
+        <script src="https://kit.fontawesome.com/b1609179cd.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/global.css') }}">
+        <title>Photolens • Events</title>
+    </head>
+    <body>
+        <header class="fixed-header">
+            <div class="header-cont">
+                <div class="flex-block">
+                    <a href="/">
+                        <img src="{{ url_for('static', filename='images/photolens.svg') }}" alt="Photolens" class="logo">
+                    </a>
+                    <nav class="navigation">
+                        <ul class="nav-ul">
+                            <li>
+                                <a class="nav" href="/work">work</a> 
+                            </li>
+                            <li>
+                                <a class="nav" href="/#about">about</a>
+                            </li>
+                            <li>
+                                <a class="nav" href="/shop">shop</a> 
+                            </li>
+                            <li>
+                                <a class="nav min-marg" href="/contact">contact</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="main-menu">
+                        <img class="shopping-cart" id="cart-icon" src="{{ url_for('static', filename='images/shopping-cart.svg') }}" alt="Shopping cart">
+                        <div class="burger-menu">
+                            <span class="bar"></span>    
+                            <span class="bar"></span>    
+                            <span class="bar"></span>
+                        </div>
+                    </div>
+                    <div class="cart">
+                        <div class="cart-header">
+                            <h2 class="cart-title">your cart</h2>
+                            <img src="{{ url_for('static', filename='images/close-icon.svg') }}" id="close-cart" alt="Close">
+                        </div>
+                        <div class="cart-divider"></div>
+                        <div class="cart-body">
+                            <!-- <p class="no-item">no items found.</p> -->
+                            <div class="product-box">
+                                <img class="product-img" src="../static/images/ying_yang.jpeg" alt="">
+                                <div class="product-info">
+                                    <div class="text-info">
+                                        <h4 class="title">ying yang</h4>
+                                        <h5 class="location">los angeles</h5>
+                                        <p class="size">size: 70x100cm</p>
+                                        <div class="remove-btn">remove</div>
+                                    </div>
+                                    <div class="number-info">
+                                        <span class="price">$ 0 usd</span>
+                                        <input class="quantity" type="number" value="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-divider"></div>
+                        <div class="cart-footer">
+                            <div class="total">
+                                <div class="total-title">subtotal</div>
+                                <div class="total-price">$ 0 usd</div>
+                            </div>
+                            <button type="button" class="btn-buy">continue to checkout</button>
+                        </div>
+                    </div>
+                    <div class="background"></div>
+                </div>
+            </div>
+        </header>
+        <section class="first-section add-padd">
+            <div class="links-box change-prop">
+                <div class="vertical-line"></div>
+                <a href="/project-categories/media" class="link delete-underline hover-effect">media</a>
+                <div class="vertical-line"></div>
+                <a href="/project-categories/events" class="link delete-underline black-link">events</a>
+                <div class="vertical-line"></div>
+                <a href="/project-categories/portraits" class="link delete-underline hover-effect">portraits</a>
+                <div class="vertical-line"></div>
+                <a href="/project-categories/landscape" class="link delete-underline hover-effect">landscape</a>
+                <div class="vertical-line"></div>
+            </div>
+            <div class="text-content">
+                <h2 class="content-title">events</h2>
+                <p class="content-text">
+                    Event photography is the practice of photographing guests and
+                    occurrences at any event or occasion where one may hire a
+                    photographer for.
+                </p>
+            </div>
+        </section>
+        <section>
+            <div class="section-cont">
+                <a href="/work" class="back-link add-padd-top-50">
+                    <i class="fa-solid fa-angle-left"></i>
+                    <h6 class="page-name">work</h6>
+                </a>
+            </div>
+            <div class="shop-cont">
+                <div class="content-block change-size-1">
+                    <div class="content-box event-box">
+                        <div class="img-box">
+                            <a href="/project/rooftop-concert" class="content-link">
+                                <img src="{{ url_for('static', filename='images/growing_band.jpeg') }}" alt="Growing Band" class="content-img">
+                            </a>
+                        </div>
+                        <div class="img-info">
+                            <a href="/project/rooftop-concert" class="location no-transform">Rooftop concert</a>
+                            <span class="comma">,</span>
+                            <p class="location">Los Angeles</p>
+                            <div class="dash"></div>
+                            <span class="for">for</span>
+                            <p class="money no-transform">Growing Band</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="divider min-px"></div>
+        </section>
+        <footer>
+            <div class="footer-box">
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/" target="blank">
+                        <i class="fab fa-facebook-f icon"></i>
+                    </a>
+                    <a href="https://twitter.com/" target="blank">
+                        <i class="fab fa-twitter icon"></i>
+                    </a>
+                    <a href="https://www.instagram.com/" target="blank">
+                        <i class="fab fa-instagram icon"></i>
+                    </a>
+                </div>
+                <p class="small-paragraph">© Photolens created by <a href="https://github.com/gigaamiridze" class="author-link" target="blank">Giga Amiridze</a></p>
+            </div>
+        </footer>
+        <script src="{{ url_for('static', filename='js/lightbox-plus-jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/shopping-cart.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/burger-menu.js') }}"></script>
+    </body>
+</html>

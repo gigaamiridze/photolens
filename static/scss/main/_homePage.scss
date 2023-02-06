@@ -1,0 +1,733 @@
+@import "../modules/variables";
+@import "../modules/classes";
+@import "../modules/mixins";
+@import "./breakpoints";
+
+body::-webkit-scrollbar {
+    width: $px10;
+    @include responsive(tablet-lg) { width: $px9; }
+    @include responsive(tablet) { width: $px8; }
+    @include responsive(phone-land-md) { width: $px7; }
+    @include responsive(phone-land-sm) { width: $px6; }
+    @include responsive(phone-port-md) { width: $px5; }
+}
+body::-webkit-scrollbar-track {
+    background-color: rgb(240, 240, 240);
+}
+body::-webkit-scrollbar-thumb {
+    background-color: $gray;
+    border-radius: $px5;
+}
+
+.background {
+    position: fixed;
+    background: #000;
+    width: 0;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 11;
+    opacity: 0;
+    transition: opacity 250ms ease-in-out, width 0ms ease-in-out 250ms;
+}
+body {
+    padding-top: $px68;
+    &.open .background {
+        width: 100%;
+        opacity: 0.8;
+        transition: opacity 250ms ease-in-out, width 0ms ease-in-out;
+    }
+    &.open {
+        overflow-y: hidden;
+    }
+}
+
+// header
+.fixed-header {
+    position: fixed;
+    background-color: $white;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    .header-cont {
+        @extend %header-cont;
+        .flex-block {
+            @include display (flex);
+            @include flex-property (space-between, center);
+            height: $px68;
+            .logo {
+                height: $px24;
+                @include responsive(phone-port-md) { height: $px22; }
+            }
+            .navigation {
+                .nav-ul {
+                    @include display (flex);
+                    @include responsive(tablet-lg) {
+                        position: fixed;
+                        flex-direction: column;
+                        text-align: center;
+                        top: $px68;
+                        left: 0;
+                        bottom: 100%;
+                        background-color: $white;
+                        width: 100%;
+                        line-height: $px45;
+                        overflow: hidden;
+                        transition: all 0.5s ease;
+                        &.active {
+                            bottom: 50%;
+                            padding: 20px 0;
+                        }
+                    }
+                    .nav {
+                        @include text-property ($px14, $inter, $black, $upper, $px24);
+                        margin-right: $px40;
+                        padding-bottom: 1.5px;
+                        position: relative;
+                        @include responsive(tablet-lg) {
+                            font-size: $px16;
+                            margin-right: 0;
+                        }
+                        @include responsive(phone-port-md) { font-size: $px15; }
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            left: 0;
+                            bottom: 0;
+                            width: 100%;
+                            height: 1.5px;
+                            background: $black;
+                            transform: scale(0, 1);
+                            transition: 0.3s linear;
+                        }
+                        &:hover::after {
+                            transform: scale(1, 1);
+                        }
+                    }
+                    .min-marg {
+                        margin-right: 0px;
+                    }
+                }
+            }
+            .main-menu {
+                @include responsive(tablet-lg) {
+                    @include display (flex);
+                    @include flex-property (center, center);
+                }
+                .shopping-cart {
+                    width: $px36;
+                    height: $px36;
+                    cursor: pointer;
+                    @include responsive(tablet-lg) { margin-right: $px20 }
+                    @include responsive(phone-port-sm) { margin-right: $px15; }
+                }
+                .burger-menu {
+                    display: none;
+                    cursor: pointer;
+                    &.active .bar:nth-child(1) {
+                        transform: translateY(8px) rotate(45deg);
+                        width: $px24;
+                    }
+                    &.active .bar:nth-child(2) {
+                        opacity: 0;
+                    }
+                    &.active .bar:nth-child(3) {
+                        transform: translateY(-8px) rotate(-45deg);
+                        width: $px24;
+                    }
+                    @include responsive(tablet-lg) { display: block; }
+                    .bar {
+                        display: block;
+                        height: $px2;
+                        background-color: $black;
+                        border-radius: $px2;
+                        transition: all 0.4s ease;
+                        &:nth-child(1) {
+                            width: $px12;
+                        }
+                        &:nth-child(2) {
+                            width: $px24;
+                            margin: $px6 auto;
+                        }
+                        &:nth-child(3) {
+                            width: $px18;
+                        }
+                    }
+                }    
+            }
+            .cart {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                max-width: 480px;
+                width: 100%;
+                min-height: 100vh;
+                background: $white;
+                z-index: 20;
+                transition: 0.6s;
+                &.active {
+                    right: 0;
+                }
+                .cart-header {
+                    @include display (flex);
+                    @include flex-property (space-between, center);
+                    width: 100%;
+                    padding: $px16 $px24 $px16 $px24;
+                    @include responsive(phone-port-md) {
+                        padding-right: $px15;
+                        padding-left: $px15;
+                    }
+                    .cart-title {
+                        @include text-property ($px18, $inter, $black, $upper, $px25);
+                        @include responsive(phone-port-md) { font-size: $px17; }
+                        @include responsive(phone-port-sm) { font-size: $px16; }
+                    }
+                    #close-cart {
+                        cursor: pointer;
+                    }
+                }
+                .cart-divider {
+                    @extend %cart-divider;
+                }
+                .cart-body {
+                    width: 100%;
+                    height: 396px;
+                    .no-item {
+                        @include text-property ($px16, $inter, $black, $capit, $px26);
+                        &.hide {
+                            display: none;
+                        }
+                    }
+                    .product-box {
+                        @include display (flex);
+                        padding: $px24;
+                        @include responsive(phone-port-md) {
+                            padding-right: $px15;
+                            padding-left: $px15;
+                        }
+                        .product-img {
+                            width: 120px;
+                            height: $px80;
+                            object-fit: cover;
+                            @include responsive(phone-port-md) { width: 105px; }
+                        }
+                        .product-info {
+                            @include display (flex);
+                            width: 296px;
+                            justify-content: space-between;
+                            margin-left: $px16;
+                            @include responsive(phone-port-md) { margin-left: $px13; }
+                            .text-info {
+                                .title,
+                                .location,
+                                .size {
+                                    @include text-property ($px14, $inter, $dark-gray, $capit, $px20);
+                                    @include responsive(phone-port-sm) { font-size: 13.5px; }
+                                }
+                                .title {
+                                    font-weight: $semi-bold;
+                                }
+                                .remove-btn {
+                                    @include text-property ($px14, $inter, $gray-2, $capit, $px20);
+                                    cursor: pointer;
+                                    transition: 200ms ease;
+                                    @include responsive(phone-port-sm) { font-size: 13.5px; }
+                                    &:hover {
+                                        color: $dark-gray;
+                                    }
+                                }
+                            }
+                            .number-info {
+                                @include display (flex);
+                                flex-direction: column;
+                                .price {
+                                    @include text-property ($px14, $inter, $dark-gray, $upper, $px20);
+                                    font-weight: $semi-bold;
+                                    margin-bottom: $px22;
+                                }
+                                .quantity {
+                                    width: $px60;
+                                    height: $px38;
+                                    background-color: $gray-3;
+                                    border: $px1 $gray-3 solid;
+                                    border-radius: $px3;
+                                    outline: none;
+                                    padding: $px8 $px6 $px8 $px12;
+                                    font-size: $px15;
+                                    font-family: $inter;
+                                    @include responsive(phone-port-md) { width: $px55; }
+                                }
+                            }
+                        }
+                    }
+                }
+                .cart-footer {
+                    width: 100%;
+                    padding: $px16 $px24 $px24 $px24;
+                    position: absolute;
+                    bottom: 0;
+                    @include responsive(phone-port-md) {
+                        padding-right: $px15;
+                        padding-left: $px15;
+                    }
+                    .total {
+                        @include display (flex);
+                        @include flex-property (space-between, center);
+                        margin-bottom: $px16;
+                        .total-title {
+                            @include text-property ($px16, $inter, $black, $capit, $px24);
+                        }
+                        .total-price {
+                            @include text-property ($px16, $inter, $black, $upper, $px24);
+                            font-weight: $bold;
+                            @include responsive(phone-port-md) { font-size: $px15; }
+                        }
+                    }
+                    .btn-buy {
+                        height: $px40;
+                        width: 100%;
+                        background-color: $black;
+                        border: $px1 solid $black;
+                        border-radius: $px2;
+                        outline: none;
+                        cursor: pointer;
+                        @include text-property ($px14, $inter, $white, $upper, $px20);
+                        transition: 0.4s ease;
+                        &:hover {
+                            opacity: 0.8;
+                        }
+                        @include responsive(phone-port-sm) { font-size: 13.5px; }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// first section
+.img-block {
+    height: 89vh;
+    position: relative;
+    .slideshow-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1; 
+        opacity: 0;
+        transition: opacity 1s ease;
+        filter: brightness(80%);
+        &:nth-child(5) {
+            object-position: center top;
+        }
+    }
+    .img-content {
+        position: absolute;
+        left: 50%;
+        top: 40%;
+        transform: translate(-50%, -40%);
+        @include responsive(desktop) {
+            max-width: 611px;
+            width: 100%;
+        }
+        @include responsive(tablet) {
+            top: 41%;
+            transform: translate(-50%, -41%);
+        }
+        @include responsive(phone-port-lg) {
+            top: 43%;
+            transform: translate(-50%, -43%);
+        }
+        .person {
+            @include text-property ($px72, $playFair, $white, $upper, $px96);
+            font-weight: $bold;
+            @include responsive(tablet) {
+                font-size: $px52;
+                line-height: $px60;
+                @include display (flex);
+                justify-content: center;
+            }
+            @include responsive(phone-land-sm) {
+                font-size: $px48;
+                line-height: $px55;
+            }
+            @include responsive(phone-port-lg) {
+                font-size: $px45;
+                line-height: $px50;
+            }
+            @include responsive(phone-port-md) {
+                font-size: $px42;
+                line-height: $px45;
+            }
+            @include responsive(phone-port-sm) {
+                font-size: $px35;
+                line-height: $px40;
+            }
+        }
+        .professions {
+            @include text-property ($px24, $inter, $white, $upper, $px34);
+            text-align: center;
+            margin-top: $px20;
+            @include responsive(tablet-lg) {
+                font-size: $px22;
+                line-height: $px28;
+            }
+            @include responsive(tablet) { font-size: $px20; }
+            @include responsive(phone-land-sm) {
+                font-size: $px18;
+                line-height: $px25;
+            }
+            @include responsive(phone-port-md) { font-size: $px17; }
+            @include responsive(phone-port-sm) {
+                font-size: $px16;
+                margin-top: $px15;
+            }
+        }
+        .button-block {
+            @include display (flex);
+            justify-content: center;
+            margin-top: $px50;
+            @include responsive(tablet) { margin-top: $px40; }
+            @include responsive(phone-land-sm) { margin-top: $px35; }
+            @include responsive(phone-port-md) { margin-top: $px30; }
+            @include responsive(phone-port-sm) { margin-top: $px25; }
+            .left-btn {
+                @include sizes ($px153, 100%, $px40);
+                @include display (flex);
+                @include flex-property (center, center);
+                background-color: $white;
+                border-radius: $px2;
+                margin-right: $px20;
+                cursor: pointer;
+                transition: 0.4s ease;
+                &:hover {
+                    background-color: $gray;
+                }
+                @include responsive(tablet) { max-width: 142px; }
+                @include responsive(phone-land-sm) {
+                    height: $px35;
+                    margin-right: $px15;
+                }
+                @include responsive(phone-port-sm) {
+                    max-width: 130px;
+                    margin-right: $px10;
+                }
+                .touch-link {
+                    @include text-property ($px14, $inter, $black, $upper, $px20);
+                    @include responsive(phone-land-sm) { font-size: $px13; }
+                    @include responsive(phone-port-sm) { font-size: 12.5px; }
+                }
+            }
+            .right-btn {
+                @include sizes ($px153, 100%, $px40);
+                background-color: hsla(0, 0%, 100%, 0.2);
+                border: $px1 $white solid;
+                border-radius: $px2;
+                cursor: pointer;
+                transition: 0.4s ease;
+                &:hover {
+                    background-color: $white;
+                }
+                @include responsive(tablet) { max-width: 142px; }
+                @include responsive(phone-land-sm) { height: $px35; }
+                @include responsive(phone-port-sm) { max-width: 130px; }
+                .shop-link {
+                    @include text-property ($px14, $inter, $white, $upper, $px40);
+                    @include display (flex);
+                    @include flex-property (center, center);
+                    width: 100%;
+                    transition: 0.4s ease;
+                    &:hover {
+                        color: $black;
+                    }
+                    @include responsive(phone-land-sm) {
+                        font-size: $px13;
+                        line-height: $px35;
+                    }
+                    @include responsive(phone-port-sm) { font-size: 12.5px; }
+                }
+            }
+        }
+    }
+    .mouse {
+        position: absolute;
+        width: $px42;
+        height: $px42;
+        left: 50%;
+        bottom: $px20;
+        transform: translate(-50%);
+    }
+}
+
+// second section
+.section-cont {
+    @extend %section-cont;
+    .work-block {
+        @include display (flex);
+        justify-content: space-between;
+        padding-top: $px100;
+        @include responsive(desktop) { 
+            padding-left: $px15;
+            padding-right: $px15;
+        }
+        @include responsive(tablet-lg) {
+            padding-top: $px80;
+            padding-left: $px40;
+            padding-right: $px40;
+        }
+        @include responsive(tablet) {
+            padding-left: $px15;
+            padding-right: $px15;
+            flex-direction: column;
+        }
+        @include responsive(phone-land-sm) { padding-top: $px60; }
+        @include responsive(phone-port-md) { padding-top: $px50; }
+        &:last-child {
+            padding-top: 0;
+            padding-bottom: $px100;
+            margin-top: $px16;
+            @include responsive(tablet-lg) { padding-bottom: $px80; }
+            @include responsive(phone-land-sm) { padding-bottom: $px60; }
+            @include responsive(phone-port-md) { padding-bottom: $px50; }
+        }
+        .img-box {
+            @include sizes (577px, 100%, 280px);
+            border-radius: $px4;
+            position: relative;
+            overflow: hidden;
+            @include responsive(desktop) { margin-right: $px16; }
+            @include responsive(tablet) {
+                margin-right: 0;
+                max-width: 100%;
+            }
+            &:last-child {
+                @include responsive(desktop) { margin-right: 0; }
+                @include responsive(tablet) { margin-top: $px16; }
+            }
+            .work-link {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                @include display (flex);
+                @include flex-property (center, center);
+                .work-title {
+                    @include text-property ($px24, $fredoka, $white, $upper, none);
+                    z-index: 1;
+                    @include responsive(tablet-lg) { font-size: $px20; }
+                }
+            }
+            .work-img {
+                position: absolute;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                filter: brightness(80%);
+                transition: 0.6s ease;
+                &:hover {
+                    transform: scale(1.05);
+                }
+            }
+            .position {
+                object-position: center top;
+            }
+        }
+    }
+}
+
+.divider {
+    @extend %divider;
+}
+.min-px {
+    height: 0.7px;
+}
+
+// third section
+.center-block {
+    padding: $px100 0 $px100 0;
+    max-width: 920px;
+    width: 100%;
+    margin: 0 auto;
+    @include display (flex);
+    align-items: center;
+    @include responsive(tablet-lg) { padding: $px80 $px40 $px80 $px40; }
+    @include responsive(tablet) {
+        padding-left: $px15;
+        padding-right: $px15;
+        flex-direction: column;
+    }
+    @include responsive(phone-land-sm) {
+        padding-top: $px60;
+        padding-bottom: $px60;
+    }
+    @include responsive(phone-port-md) {
+        padding-top: $px50;
+        padding-bottom: $px50;
+    }
+    .img-box {
+        @include sizes (420px, 100%, 600px);
+        margin-right: $px40;
+        @include responsive(tablet-lg) { @include sizes (360px, 100%, 480px); }
+        @include responsive(tablet) {
+            max-width: 480px;
+            margin-right: 0;
+        }
+        @include responsive(phone-land-sm) {
+            max-width: none;
+            height: 420px;
+        }
+        .photographer-boy {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: $px4;
+        }
+    }
+    .about-content {
+        max-width: 460px;
+        width: 100%;
+        @include responsive(tablet) {
+            max-width: 480px;
+            margin-top: $px15;
+        }
+        .about-title {
+            @include text-property ($px34, $playFair, $black, $upper, none);
+            font-weight: $bold;
+            margin-bottom: $px35;
+            @include responsive(tablet) { margin-bottom: $px17; }
+            @include responsive(phone-port-sm) { font-size: $px32; }
+        }
+        .text {
+            @include text-property ($px16, $inter, $black, none, $px24);
+            @include responsive(phone-port-sm) { font-size: $px15; }
+            &:nth-child(odd) {
+                margin-top: $px20;
+                @include responsive(phone-land-sm) { margin-top: $px15; }
+                @include responsive(phone-port-sm) { margin-top: $px10; }
+            }
+        }
+    }
+    .buttons-flex {
+        @include display (flex);
+        margin-top: $px30;
+        @include responsive(tablet) { margin-top: $px20; }
+        .left-btn {
+            @include sizes ($px153, 100%, $px40);
+            @include display (flex);
+            @include flex-property (center, center);
+            background-color: $black;
+            border-radius: $px2;
+            margin-right: $px20;
+            cursor: pointer;
+            transition: 0.4s ease;
+            &:hover {
+                opacity: 0.8;
+            }
+            @include responsive(tablet) { max-width: 142px; }
+            @include responsive(phone-land-sm) {
+                max-width: 208px;
+                height: $px46;
+                margin-right: $px15;
+            }
+            @include responsive(phone-port-sm) { height: $px40; }
+            .touch-link {
+                @include text-property ($px14, $inter, $white, $upper, $px20);
+                @include responsive(phone-port-sm) { font-size: $px13; }
+            }
+        }
+        .right-btn {
+            @include sizes ($px153, 100%, $px40);
+            background-color: $white;
+            border: $px1 $black solid;
+            border-radius: $px2;
+            cursor: pointer;
+            transition: 0.4s ease;
+            &:hover {
+                background-color: $black;
+            }
+            @include responsive(tablet) { max-width: 142px; }
+            @include responsive(phone-land-sm) {
+                max-width: 208px;
+                height: $px46;
+            }
+            @include responsive(phone-port-sm) { height: $px40; }
+            .shop-link {
+                @include text-property ($px14, $inter, $black, $upper, $px40);
+                @include display (flex);
+                @include flex-property (center, center);
+                width: 100%;
+                transition: 0.4s ease;
+                &:hover {
+                    color: $white;
+                }
+                @include responsive(phone-land-sm) { line-height: $px46; }
+                @include responsive(phone-port-sm) {
+                    font-size: $px13;
+                    line-height: $px40;
+                }
+            }
+        }
+    }
+}
+
+// footer
+.footer-box {
+    padding: $px60 0 $px60 0;
+    @include responsive(tablet) {
+        padding-top: $px40;
+        padding-bottom: $px40;
+    }
+    @include responsive(phone-port-md) {
+        padding-top: $px30;
+        padding-bottom: $px30;
+    }
+    .social-icons {
+        @include display (flex);
+        justify-content: center;
+        margin-bottom: $px30;
+        @include responsive(phone-port-md) { margin-bottom: $px20; }
+        @include responsive(phone-port-sm) { margin-bottom: $px15; }
+        .icon {
+            font-size: $px30;
+            color: $dark-gray;
+            margin-right: $px17;
+            transition: 0.3s linear;
+            @include responsive(phone-port-sm) { font-size: $px28; }
+            &:hover {
+                color: $black;
+            }
+        }
+        .fa-facebook-f {
+            font-size: $px28;
+            @include responsive(phone-port-sm) { font-size: $px27; }
+        }
+        .fa-instagram {
+            margin-right: 0;
+        }
+    }
+    .small-paragraph {
+        @include text-property ($px14, $inter, $dark-gray, none, $px20);
+        text-align: center;
+        .author-link {
+            color: $black;
+            font-weight: 600;
+        }
+    }
+}
+
+// reveal scroll
+.reveal {
+    position: relative;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 1s ease;
+}
+.reveal.active {
+    transform: translateY(0px);
+    opacity: 1;
+}

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/gif" href="{{ url_for('static', filename='images/lens.png') }}" sizes="16x16">
+        <script src="https://kit.fontawesome.com/b1609179cd.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/global.css') }}">
+        <title>Photolens</title>
+    </head>
+    <body>
+        <header class="fixed-header">
+            <div class="header-cont">
+                <div class="flex-block">
+                    <a href="/">
+                        <img src="{{ url_for('static', filename='images/photolens.svg') }}" alt="Photolens" class="logo">
+                    </a>
+                    <nav class="navigation">
+                        <ul class="nav-ul">
+                            <li>
+                               <a class="nav" href="/work">work</a> 
+                            </li>
+                            <li>
+                                <a class="nav" href="#about">about</a> 
+                             </li>
+                             <li>
+                                <a class="nav" href="/shop">shop</a> 
+                             </li>
+                             <li>
+                                <a class="nav min-marg" href="/contact">contact</a>
+                             </li>
+                        </ul>
+                    </nav>
+                    <div class="main-menu">
+                        <img class="shopping-cart" id="cart-icon" src="{{ url_for('static', filename='images/shopping-cart.svg') }}" alt="Shopping cart">
+                        <div class="burger-menu">
+                            <span class="bar"></span>    
+                            <span class="bar"></span>    
+                            <span class="bar"></span>
+                        </div>
+                    </div>
+                    <div class="cart">
+                        <div class="cart-header">
+                            <h2 class="cart-title">your cart</h2>
+                            <img src="{{ url_for('static', filename='images/close-icon.svg') }}" id="close-cart" alt="Close">
+                        </div>
+                        <div class="cart-divider"></div>
+                        <div class="cart-body">
+                            <!-- <p class="no-item">no items found.</p> -->
+                            <div class="product-box">
+                                <img class="product-img" src="../static/images/ying_yang.jpeg" alt="">
+                                <div class="product-info">
+                                    <div class="text-info">
+                                        <h4 class="title">ying yang</h4>
+                                        <h5 class="location">los angeles</h5>
+                                        <p class="size">size: 70x100cm</p>
+                                        <div class="remove-btn">remove</div>
+                                    </div>
+                                    <div class="number-info">
+                                        <span class="price">$ 0 usd</span>
+                                        <input class="quantity" type="number" value="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-divider"></div>
+                        <div class="cart-footer">
+                            <div class="total">
+                                <div class="total-title">subtotal</div>
+                                <div class="total-price">$ 0 usd</div>
+                            </div>
+                            <button type="button" class="btn-buy">continue to checkout</button>
+                        </div>
+                    </div>
+                    <div class="background"></div>
+                </div>
+            </div>
+        </header>
+        <section>
+            <div class="img-block">
+                <img src="{{ url_for('static', filename='images/zebra.jpg') }}" alt="Zebra" class="slideshow-img">
+                <img src="{{ url_for('static', filename='images/woman.jpg') }}" alt="Woman" class="slideshow-img">
+                <img src="{{ url_for('static', filename='images/street.jpg') }}" alt="Street" class="slideshow-img">
+                <img src="{{ url_for('static', filename='images/ship.jpg') }}" alt="Ship" class="slideshow-img">
+                <img src="{{ url_for('static', filename='images/train.jpg') }}" alt="Train" class="slideshow-img">
+                <div class="img-content">
+                    <h1 class="person">harvey walton</h1>
+                    <p class="professions">photographer • videomaker • travel expert</p>
+                    <div class="button-block">
+                        <div class="left-btn">
+                            <a href="/contact" class="touch-link">get in touch</a>
+                        </div>
+                        <div class="right-btn">
+                            <a href="/shop" class="shop-link">visit my shop</a>
+                        </div>
+                    </div>
+                </div>
+                <img src="{{ url_for('static', filename='images/mouse.svg') }}" alt="Mouse" class="mouse">
+            </div>
+        </section>
+        <section>
+            <div class="section-cont reveal">
+                <div class="work-block">
+                    <div class="img-box">
+                        <a href="/project-categories/media" class="work-link">
+                            <h3 class="work-title">media</h3>
+                            <img src="{{ url_for('static', filename='images/media.jpeg') }}" alt="Boy" class="work-img">
+                        </a>
+                    </div>
+                    <div class="img-box">
+                        <a href="/project-categories/events" class="work-link">
+                            <h3 class="work-title">events</h3>
+                            <img src="{{ url_for('static', filename='images/event.jpeg') }}" alt="Event" class="work-img">
+                        </a>
+                    </div>
+                </div>
+                <div class="work-block">
+                    <div class="img-box">
+                        <a href="/project-categories/portraits" class="work-link">
+                            <h3 class="work-title">portraits</h3>
+                            <img src="{{ url_for('static', filename='images/portrait.jpeg') }}" alt="Portrait" class="work-img position">
+                        </a>
+                    </div>
+                    <div class="img-box">
+                        <a href="/project-categories/landscape" class="work-link">
+                            <h3 class="work-title">landscape</h3>
+                            <img src="{{ url_for('static', filename='images/landscape.jpeg') }}" alt="Landscape" class="work-img">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="divider"></div>
+        </section>
+        <section id="about">
+            <div class="center-block reveal">
+                <div class="img-box">
+                    <img src="{{ url_for('static', filename='images/photographer.jpeg') }}" alt="Photographer" class="photographer-boy">
+                </div>
+                <div class="about-content">
+                    <h2 class="about-title">about me</h2>
+                    <p class="text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Suspendisse varius enim in eros elementum tristique. Duis
+                        cursus, mi quis viverra ornare, eros dolor interdum nulla, ut
+                        commodo diam libero vitae erat. Aenean faucibus nibh et
+                        justo cursus id rutrum lorem imperdiet.
+                    </p>
+                    <p class="text">
+                        Vestibulum id tempus tortor. Aenean eu magna at purus
+                        aliquam iaculis. Morbi bibendum suscipit euismod.
+                        Suspendisse sed leo eu elit ultrices porta. Ut urna erat,
+                        finibus sed ex sed, mollis hendrerit nulla. Donec id lorem non
+                        est commodo.
+                    </p>
+                    <div class="buttons-flex">
+                        <div class="left-btn">
+                            <a href="/contact" class="touch-link">get in touch</a>
+                        </div>
+                        <div class="right-btn">
+                            <a href="/shop" class="shop-link">visit my shop</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="divider min-px"></div>
+        </section>
+        <footer>
+            <div class="footer-box">
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/" target="blank">
+                        <i class="fab fa-facebook-f icon"></i>
+                    </a>
+                    <a href="https://twitter.com/" target="blank">
+                        <i class="fab fa-twitter icon"></i>
+                    </a>
+                    <a href="https://www.instagram.com/" target="blank">
+                        <i class="fab fa-instagram icon"></i>
+                    </a>
+                </div>
+                <p class="small-paragraph">© Photolens created by <a href="https://github.com/gigaamiridze" class="author-link" target="blank">Giga Amiridze</a></p>
+            </div>
+        </footer>
+        <script src="{{ url_for('static', filename='js/slider.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="{{ url_for('static', filename='js/nav-scroll.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/reveal-scroll.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/shopping-cart.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/burger-menu.js') }}"></script>
+    </body>
+</html>

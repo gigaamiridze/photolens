@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/gif" href="{{ url_for('static', filename='images/lens.png') }}" sizes="16x16">
+        <script src="https://kit.fontawesome.com/b1609179cd.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/global.css') }}">
+        <title>Photolens • Shop</title>
+    </head>
+    <body>
+        <header class="fixed-header">
+            <div class="header-cont">
+                <div class="flex-block">
+                    <a href="/">
+                        <img src="{{ url_for('static', filename='images/photolens.svg') }}" alt="Photolens" class="logo">
+                    </a>
+                    <nav class="navigation">
+                        <ul class="nav-ul">
+                            <li>
+                                <a class="nav" href="/work">work</a> 
+                            </li>
+                            <li>
+                                <a class="nav" href="/#about">about</a>
+                            </li>
+                            <li>
+                                <a class="nav hover-denial" href="/shop">shop</a> 
+                            </li>
+                            <li>
+                                <a class="nav min-marg" href="/contact">contact</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="main-menu">
+                        <img class="shopping-cart" id="cart-icon" src="{{ url_for('static', filename='images/shopping-cart.svg') }}" alt="Shopping cart">
+                        <div class="burger-menu">
+                            <span class="bar"></span>    
+                            <span class="bar"></span>    
+                            <span class="bar"></span>
+                        </div>
+                    </div>
+                    <div class="cart">
+                        <div class="cart-header">
+                            <h2 class="cart-title">your cart</h2>
+                            <img src="{{ url_for('static', filename='images/close-icon.svg') }}" id="close-cart" alt="Close">
+                        </div>
+                        <div class="cart-divider"></div>
+                        <div class="cart-body">
+                            <!-- <p class="no-item">no items found.</p> -->
+                            <div class="product-box">
+                                <img class="product-img" src="../static/images/ying_yang.jpeg" alt="">
+                                <div class="product-info">
+                                    <div class="text-info">
+                                        <h4 class="title">ying yang</h4>
+                                        <h5 class="location">los angeles</h5>
+                                        <p class="size">size: 70x100cm</p>
+                                        <div class="remove-btn">remove</div>
+                                    </div>
+                                    <div class="number-info">
+                                        <span class="price">$ 0 usd</span>
+                                        <input class="quantity" type="number" value="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-divider"></div>
+                        <div class="cart-footer">
+                            <div class="total">
+                                <div class="total-title">subtotal</div>
+                                <div class="total-price">$ 0 usd</div>
+                            </div>
+                            <button type="button" class="btn-buy">continue to checkout</button>
+                        </div>
+                    </div>
+                    <div class="background"></div>
+                </div>
+            </div>
+        </header>
+        <section class="first-section">
+            <div class="text-content">
+                <h2 class="content-title">shop</h2>
+                <p class="content-text">
+                    Lorem ipsum dolor sit amet consectetur adipiscin eli a sit
+                    facilisis volutpat interdum non a magna tempus amet.
+                </p>
+            </div>
+            <div class="links-box">
+                <div class="vertical-line"></div>
+                <a href="/shop" class="link black-link">all</a>
+                <div class="vertical-line"></div>
+                <a href="/category/people" class="link">people</a>
+                <div class="vertical-line"></div>
+                <a href="/category/brand" class="link">brand</a>
+                <div class="vertical-line"></div>
+                <a href="/category/landscape" class="link">landscape</a>
+                <div class="vertical-line"></div>
+            </div>
+        </section>
+        <section>
+            <div class="shop-cont">
+                <div class="content-block">
+                    <div class="content-box">
+                        <div class="img-box">
+                            <a href="/product/ying-yang" class="content-link">
+                                <img src="{{ url_for('static', filename='images/ying_yang.jpeg') }}" alt="Ying Yang" class="content-img">
+                            </a>
+                        </div>
+                        <div class="img-info">
+                            <a href="/product/ying-yang" class="project-name">ying yang</a>
+                            <span class="comma">,</span>
+                            <p class="location">los angeles</p>
+                            <div class="dash"></div>
+                            <p class="money">$ 49.00 usd</p>
+                        </div>
+                    </div>
+                    <div class="content-box">
+                        <div class="img-box">
+                            <a href="/product/unconcept" class="content-link">
+                                <img src="{{ url_for('static', filename='images/unconcept.jpeg') }}" alt="Unconcept" class="content-img">
+                            </a>
+                        </div>
+                        <div class="img-info">
+                            <a href="/product/unconcept" class="project-name">unconcept</a>
+                            <span class="comma">,</span>
+                            <p class="location">varsavia</p>
+                            <div class="dash"></div>
+                            <p class="money">$ 49.00 usd</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <div class="content-box">
+                        <div class="img-box">
+                            <a href="/product/tesla" class="content-link">
+                                <img src="{{ url_for('static', filename='images/tesla.jpeg') }}" alt="Tesla" class="content-img">
+                            </a>
+                        </div>
+                        <div class="img-info">
+                            <a href="/product/tesla" class="project-name">tesla</a>
+                            <span class="comma">,</span>
+                            <p class="location">austin</p>
+                            <div class="dash"></div>
+                            <p class="money">$ 49.00 usd</p>
+                        </div>
+                    </div>
+                    <div class="content-box">
+                        <div class="img-box">
+                            <a href="/product/kirkjufell" class="content-link">
+                                <img src="{{ url_for('static', filename='images/iceland.jpeg') }}" alt="Iceland" class="content-img">
+                            </a>
+                        </div>
+                        <div class="img-info">
+                            <a href="/product/kirkjufell" class="project-name">kirkjufell</a>
+                            <span class="comma">,</span>
+                            <p class="location">iceland</p>
+                            <div class="dash"></div>
+                            <p class="money">$ 49.00 usd</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="divider min-px"></div>
+        </section>
+        <footer>
+            <div class="footer-box">
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/" target="blank">
+                        <i class="fab fa-facebook-f icon"></i>
+                    </a>
+                    <a href="https://twitter.com/" target="blank">
+                        <i class="fab fa-twitter icon"></i>
+                    </a>
+                    <a href="https://www.instagram.com/" target="blank">
+                        <i class="fab fa-instagram icon"></i>
+                    </a>
+                </div>
+                <p class="small-paragraph">© Photolens created by <a href="https://github.com/gigaamiridze" class="author-link" target="blank">Giga Amiridze</a></p>
+            </div>
+        </footer>
+        <script src="{{ url_for('static', filename='js/lightbox-plus-jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/shopping-cart.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/burger-menu.js') }}"></script>
+    </body>
+</html>

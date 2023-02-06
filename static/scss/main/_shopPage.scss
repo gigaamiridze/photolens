@@ -1,0 +1,156 @@
+@import "../modules/variables";
+@import "../modules/classes";
+@import "../modules/mixins";
+@import "./breakpoints";
+
+// first section
+.links-box {
+    @include display (flex);
+    align-items: center;
+    width: 383px;
+    margin: 0 auto;
+    margin-top: $px25;
+    padding-bottom: $px60;
+    @include responsive(tablet-lg) { width: 411px; }
+    @include responsive(tablet) { width: 381px; }
+    @include responsive(phone-land-sm) {
+        width: 326px;
+        padding-bottom: $px45;
+    }
+    @include responsive(phone-port-md) {
+        overflow: scroll;
+        max-width: 336px;
+        width: 100%;
+        padding-bottom: 0;
+        margin-bottom: $px40;
+    }
+    .vertical-line {
+        @extend %vertical-line;
+    }
+    .link {
+        @include text-property ($px14, $inter, $gray-2, $upper, none);
+        letter-spacing: 0.4px;
+        position: relative;
+        padding-bottom: 1.5px;
+        margin: 0 $px20 0 $px20;
+        @include responsive(tablet-lg) { font-size: $px16; }
+        @include responsive(tablet) { font-size: $px14; }
+        @include responsive(phone-land-sm) {
+            font-size: $px13;
+            margin: 0 $px15 0 $px15;
+        }
+        @include responsive(phone-port-md) { font-size: 12.5px; }
+        &::after {
+            @extend %underline;
+            @include responsive(phone-port-md) { height: 1.1px; }
+        }
+        &:hover::after {
+            transform: scale(1, 1);
+        }
+    }
+    .black-link {
+        color: $black;
+        &:hover::after {
+            background: $black;
+        }
+    }
+}
+
+// second section
+.shop-cont {
+    @extend %section-cont;
+    @include responsive(desktop) { padding: 0 $px15 0 $px15; }
+    @include responsive(tablet-lg) { padding: 0 $px40 0 $px40; }
+    @include responsive(tablet) { padding: 0 $px15 0 $px15; }
+    .content-block {
+        @include display (flex);
+        justify-content: space-between;
+        @include responsive(tablet) { flex-direction: column; }
+        &:last-child {
+            margin-top: $px50;
+            padding-bottom: $px100;
+            @include responsive(tablet-lg) { padding-bottom: $px80; }
+            @include responsive(phone-land-sm) {
+                padding-bottom: $px60;
+                margin-top: $px40;
+            }
+            @include responsive(phone-port-md) {
+                padding-bottom: $px50;
+                margin-top: $px35;
+            }
+            @include responsive(phone-port-sm) { margin-top: $px30; }
+        }
+        .content-box {
+            @include sizes (577px, 100%, 100%);
+            @include responsive(tablet) { max-width: 100%; }
+            &:first-child {
+                @include responsive(desktop) { margin-right: $px15; }
+                @include responsive(tablet) { margin-right: 0; }
+            }
+            &:nth-child(even) {
+                @include responsive(tablet) { margin-top: $px50; }
+                @include responsive(phone-land-sm) { margin-top: $px40; }
+                @include responsive(phone-port-md) { margin-top: $px35; }
+                @include responsive(phone-port-sm) { margin-top: $px30; }
+            }
+            .img-box {
+                @include sizes (100%, 100%, 360px);
+                border-radius: $px4;
+                position: relative;
+                overflow: hidden;
+                @include responsive(tablet-lg) { height: 280px; }
+                @include responsive(tablet) { height: 320px; }
+                @include responsive(phone-land-sm) { height: 220px; }
+                @include responsive(phone-port-md) { height: 200px; }
+                @include responsive(phone-port-sm) { height: 180px; }
+                .content-link {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    .content-img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        transition: 0.6s ease;
+                        &:hover {
+                            transform: scale(1.05);
+                        }
+                    }
+                }
+            }
+            .img-info {
+                @include display (flex);
+                align-items: center;
+                flex-wrap: wrap;
+                margin-top: $px15;
+                @include responsive(phone-land-sm) { margin-top: $px10; }
+                @include responsive(phone-port-md) { margin-top: $px7; }
+                @include responsive(phone-port-sm) { margin-top: $px5; }
+                .project-name,
+                .location {
+                    @include text-property ($px16, $inter, $black, $capit, $px24);
+                    @include responsive(phone-port-md) { font-size: $px15; }
+                    @include responsive(phone-port-sm) { font-size: $px14; }
+                }
+                .comma {
+                    width: $px10;
+                }
+                .dash {
+                    width: $px10;
+                    height: $px1;
+                    background-color: $black;
+                    border-radius: $px2;
+                    margin: 0 $px7;
+                }
+                .money {
+                    @include text-property ($px16, $inter, $black, $upper, $px24);
+                    font-weight: $semi-bold;
+                    @include responsive(phone-port-md) { font-size: $px15; }
+                    @include responsive(phone-port-sm) { font-size: $px14; }
+                }
+            }
+        }
+    }
+}

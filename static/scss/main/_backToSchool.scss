@@ -1,0 +1,61 @@
+@import "../modules/variables";
+@import "../modules/classes";
+@import "../modules/mixins";
+@import "./breakpoints";
+
+// images' section
+.section-cont {
+    .gallery {
+        @include display (flex);
+        justify-content: space-between;
+        margin-top: $px20;
+        padding-bottom: $px100;
+        @include responsive(desktop) {
+            padding-left: $px15;
+            padding-right: $px15;
+        }
+        @include responsive(tablet-lg) {
+            padding-left: $px40;
+            padding-right: $px40;
+            padding-bottom: $px80;
+        }
+        @include responsive(tablet) {
+            padding-left: $px15;
+            padding-right: $px15;
+        }
+        @include responsive(phone-land-sm) {
+            padding-bottom: $px60;
+            flex-direction: column;
+        } 
+        @include responsive(phone-port-md) {
+            margin-top: $px15;
+            padding-bottom: $px50;
+        }
+        @include responsive(phone-port-sm) { margin-top: $px10; }
+        .images-vertical-block {
+            max-width: 379px;
+            width: 100%;
+            &:nth-child(2) {
+                @include responsive(desktop) { margin: 0 $px16; }
+                @include responsive(tablet) { margin-right: 0; }
+                @include responsive(phone-land-sm) {
+                    margin: $px15 0 0 0;
+                }
+            }
+            @include responsive(tablet) {
+                max-width: 100%;
+                display: inline-block;
+                &:nth-child(3) { display: none; }
+            }
+        }
+    }
+}
+
+.image {
+    width: 100%;
+    object-fit: cover;
+    margin-bottom: $px15;
+}
+.del-marg-bott {
+    margin-bottom: 0;
+}
